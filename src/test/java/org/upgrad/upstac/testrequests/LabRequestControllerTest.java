@@ -71,11 +71,7 @@ class LabRequestControllerTest {
 
         // Create an object of ResponseStatusException . Use assertThrows() method and pass assignForLabTest() method
         // of labRequestController with InvalidRequestId as Id
-        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class, ()->{
-            labRequestController.assignForLabTest(InvalidRequestId);
-        });
 
-        assertThat(responseStatusException.getMessage(), containsString("Invalid ID"));
 
         //Use assertThat() method to perform the following comparison
         //  the exception message should be contain the string "Invalid ID"
@@ -86,21 +82,20 @@ class LabRequestControllerTest {
     @WithUserDetails(value = "tester")
     public void calling_updateLabTest_with_valid_test_request_id_should_update_the_request_status_and_update_test_request_details(){
 
-        TestRequest testRequest = getTestRequestByStatus(RequestStatus.LAB_TEST_IN_PROGRESS);
+
 
         //Implement this method
         //Create an object of CreateLabResult and call getCreateLabResult() to create the object. Pass the above created object as the parameter
-        CreateLabResult createLabResult = getCreateLabResult(testRequest);
+
 
         //Create another object of the TestRequest method and explicitly update the status of this object
         // to be 'LAB_TEST_IN_PROGRESS'. Make use of updateLabTest() method from labRequestController class (Pass the previously created two objects as parameters)
-        TestRequest testRequest1 = getTestRequestByStatus(RequestStatus.LAB_TEST_IN_PROGRESS);
-        testRequest1 = labRequestController.updateLabTest(testRequest.requestId, createLabResult);
+
         //Use assertThat() methods to perform the following three comparisons
         //  1. the request ids of both the objects created should be same
         //  2. the status of the second object should be equal to 'LAB_TEST_COMPLETED'
         // 3. the results of both the objects created should be same. Make use of getLabResult() method to get the results.
-        assertThat(testRequest1.getStatus(), equalTo(RequestStatus.LAB_TEST_COMPLETED));
+
 
 
 
